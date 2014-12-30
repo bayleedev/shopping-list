@@ -1,0 +1,14 @@
+{
+  "name": "shopping-list",
+  "version": "1.0.0",
+  "description": "A simple command line interface for managing an in-memory shopping list.",
+  "main": "index.coffee",
+  "scripts": {
+    "test": "foobar"
+  },
+  "author": "Blaine Schmeisser",
+  "license": "MIT",
+  "dependencies": {
+    "cli-input": "^0.1.0"
+  }
+}
