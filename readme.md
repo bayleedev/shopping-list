@@ -1,4 +1,5 @@
 ## Shopping List
+[![Build Status](https://travis-ci.org/blainesch/shopping-list.svg?branch=master)](https://travis-ci.org/blainesch/shopping-list)
 
 A simple example of creating integration tests for a command line app using:
 * [Cucumber.js](https://www.npmjs.com/package/cucumber)
