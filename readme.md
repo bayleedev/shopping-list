@@ -12,6 +12,6 @@ What happens is we setup a terminal in the browser that can run your script and 
 Install [phantom](http://phantomjs.org/) on your computer.
 
 ## Run the tests
+Start the web terminal `npm run-script start-term`
 Run the tests `npm test`
-
-This boots up the web terminal in the background and kills it after the tests are over.
+Kill the web terminal `npm run-script stop-term`

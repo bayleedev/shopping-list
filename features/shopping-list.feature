@@ -25,3 +25,4 @@ Feature: Shopping List
     And I type in "remove pizza"
     And I type in "list"
     Then I should not see "pizza" in the output
+    And I should see "crackers" in the output

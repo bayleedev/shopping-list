@@ -1,0 +1,14 @@
+language: node_js
+
+node_js:
+  - 0.10.33
+
+before_script:
+  - npm run-script start-term
+
+after_script:
+  - npm run-script stop-term
+
+cache:
+  directories:
+    - node_modules
