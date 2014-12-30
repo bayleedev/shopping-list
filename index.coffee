@@ -13,8 +13,8 @@ class Prompt
       format: '> '
     @ps.on('value', @handler)
 
-  handler: ([command, arg]) =>
-    @list[command](arg) if @list[command]
+  handler: ([command, args...]) =>
+    @list[command](args.join(' ')) if @list[command]
     if command == 'exit'
       @ps.readline.close()
     else
@@ -28,7 +28,7 @@ class ShoppingList
   shopping_list: []
 
   list: ->
-    console.log i, el for el,i in @shopping_list
+    console.log @shopping_list.join('\n')
 
   add: (item) ->
     @shopping_list.push(item)
