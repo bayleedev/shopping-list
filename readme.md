@@ -9,8 +9,10 @@ A simple example of creating integration tests for a command line app using:
 ## Theory
 What happens is we setup a terminal in the browser that can run your script and get output based on that. The scenarios know how to determine what was the last "output" of your cli.
 
-## Dependencies
-Install [phantom](http://phantomjs.org/) on your computer.
+## Dependencies for your box
+* [phantom](http://phantomjs.org/)
+* [coffeescript](https://www.npmjs.com/package/coffee-script)
+
 
 ## Run the tests
 Start the web terminal `npm run-script start-term`

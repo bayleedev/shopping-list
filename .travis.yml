@@ -4,6 +4,7 @@ node_js:
   - 0.10.33
 
 before_script:
+  - npm install coffee-script
   - npm run-script start-term
 
 after_script:
