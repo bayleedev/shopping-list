@@ -2,7 +2,7 @@
   "name": "shopping-list",
   "version": "1.0.0",
   "description": "A simple command line interface for managing an in-memory shopping list.",
-  "main": "index.coffee",
+  "main": "src/index.coffee",
   "scripts": {
     "test": "./node_modules/.bin/web-terminal & ./node_modules/.bin/cucumber.js && kill $(ps aux | grep web-terminal | awk '{print $2}')"
   },
