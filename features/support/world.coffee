@@ -1,63 +1,42 @@
-phantom = require("phantom")
+spawn = require('child_process').spawn
 
 WorldConstructor = (callback) ->
 
   class World
 
-    phantom: phantom
+    process: null
 
-    browser: null
+    output: []
 
-    page: null
-
-    visit: (url, callback) =>
-      phantom.create (@browser) =>
-        @browser.createPage (@page) =>
-          @page.open "http://localhost:8088/terminal", (status) =>
-            callback()
-
-    getOutput: (callback) =>
-      @page.evaluate ->
-        window.APP.output[window.APP.output.length - 2]
-      , (result) ->
-        callback(result)
+    runCommand: (command, callback) =>
+      command = command.split(' ')
+      @waitForOutput(callback)
+      @process = spawn(
+        command[0],
+        command.slice(1),
+        cwd: "#{__dirname}/../../"
+      )
+      @process.stdout.on 'data', (data) =>
+        @output.push data.toString()
 
     type: (input, callback) =>
-      for i in [0...input.length]
-        @_typeCharCode(input.charCodeAt(i))
       @waitForOutput(callback)
-      @_typeCharCode(13) # Enter
+      @process.stdin.write "#{input}\n"
 
-    # Wait for bigger output length window.APP.output.length
     waitForOutput: (callback) =>
-      @page.evaluate ->
-        window.APP.output.length
-      , (result) =>
-        @_waitFor (callback) =>
-          @page.evaluate (result) ->
-            result < window.APP.output.length
-          , callback, result
-        , ->
-          callback()
+      @_waitForOutput(@output.length, callback)
 
-    _typeCharCode: (code, callback = (p) -> p) =>
-      @page.evaluate (code) ->
-        jQuery("#cursor").trigger(jQuery.Event("keypress",
-          which: code
-        ))
-      , callback, code
+    # Subtract 2
+    # 1 for index to count
+    # 1 account for the new prompt it sends
+    getOutput: (callback) =>
+      callback(@output[@output.length - 2])
 
-    _waitFor: (test, callback, timeOutMillis = 4500) =>
-      start = new Date().getTime()
-      condition = false
-      interval = setInterval =>
-        if (new Date().getTime() - start < timeOutMillis) and not condition
-          test (result) ->
-            condition = result
-        else
-          callback(condition)
-          clearInterval interval
-      , 250
+    _waitForOutput: (oldOutputLength, callback) =>
+      if @output.length > oldOutputLength
+        callback()
+      else
+        setTimeout(@_waitForOutput.bind(@, oldOutputLength, callback), 500)
 
   callback(new World)
 

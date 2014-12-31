@@ -2,8 +2,7 @@ terminalStepDefinitions = ->
   @World = require("../support/world").World
 
   @Given 'I open the shopping list', (callback) ->
-    @visit "http://localhost:8088/terminal", =>
-      @type "coffee src/index.coffee", callback
+    @runCommand 'coffee src/index.coffee', callback
 
   @When /^I type in "([^"]*)"$/, (command, callback) ->
     @type command, callback

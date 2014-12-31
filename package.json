@@ -4,9 +4,7 @@
   "description": "A simple command line interface for managing an in-memory shopping list.",
   "main": "src/index.coffee",
   "scripts": {
-    "test": "./node_modules/.bin/cucumber.js",
-    "start-term": "./node_modules/.bin/web-terminal & sleep 5s",
-    "stop-term": "ps aux | grep web-terminal | awk '{print $2}' | xargs kill"
+    "test": "./node_modules/.bin/cucumber.js"
   },
   "author": "Blaine Schmeisser",
   "license": "MIT",
@@ -18,8 +16,6 @@
     "cli-input": "^0.1.0"
   },
   "devDependencies": {
-    "cucumber": "^0.4.7",
-    "phantom": "^0.7.1",
-    "web-terminal": "git+https://github.com/blainesch/web-terminal.git#0.6.7"
+    "cucumber": "^0.4.7"
   }
 }

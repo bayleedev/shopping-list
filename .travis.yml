@@ -5,10 +5,6 @@ node_js:
 
 before_script:
   - npm install coffee-script
-  - npm run-script start-term
-
-after_script:
-  - npm run-script stop-term
 
 cache:
   directories:

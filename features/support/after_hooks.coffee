@@ -1,4 +1,4 @@
 module.exports = ->
   @After (callback) ->
-    @browser.exit()
+    @process.kill('SIGHUP');
     callback()
